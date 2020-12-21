@@ -1,0 +1,35 @@
+[user]
+	name = KITAGAWA Masaki
+	email = m-kitagawa@mksc.jp
+[alias]
+	co = checkout
+[core]
+	quotepath = false
+	precomposeunicode = true
+[color]
+	ui = auto
+[push]
+	default = simple
+[merge]
+	ff = only
+[alias]
+	log-graph = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso
+	d1 = diff HEAD~            # HEADから1つ前とdiff
+	d2 = diff HEAD~~           # HEADから2つ前とdiff
+	d3 = diff HEAD~~~          # HEADから3つ前とdiff
+	d4 = diff HEAD~~~~         # HEADから4つ前とdiff
+	d5 = diff HEAD~~~~~        # HEADから5つ前とdiff
+	d10 = diff HEAD~~~~~~~~~~  # HEADから10前とdiff
+        gsub = !/usr/local/bin/git-gsub.rb
+        d = diff
+        s = status
+	ignore = !"f() { local s=$1; shift; \
+      while [ $# -gt 0 ]; do s=\"$s,$1\"; shift; done;\
+      curl \"https://www.gitignore.io/api/$s\"; }; f"
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[pull]
+	ff = only
