@@ -96,6 +96,10 @@ export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 export PATH="node_modules/.bin:$PATH"
 
+# java
+
+export JAVA_HOME=`/usr/libexec/java_home -v 8`
+
 # Android Studio
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
