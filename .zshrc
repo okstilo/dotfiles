@@ -61,7 +61,7 @@ ZSH_THEME="dracula"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git ruby rails docker
+  brew git docker rbenv ruby gem rails
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -95,6 +95,11 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 export PATH="node_modules/.bin:$PATH"
+
+# rbenv
+
+export PATH=$HOME/.rbenv/bin:$PATH
+eval "$(rbenv init -)"
 
 # java
 
