@@ -181,8 +181,6 @@ function peco-select-gitadd() {
 zle -N peco-select-gitadd
 bindkey "^g^a" peco-select-gitadd
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 function peco-checkout-branch() {
     local BRANCH="$(git branch -a|ruby -e ‘bs=readlines.map(&:strip);lb=bs.select{|b|!(/^remotes\/origin/ =~ b)};rb=bs.select{|b|/^remotes\/origin/ =~ b}.select{|b|!b.include?("->") && !lb.include?(b.gsub("remotes/origin/",""))};puts lb.select{|b|!(/^\*/ =~ b)} + rb’|peco --prompt ‘git checkout’)"
     if [ -n "$BRANCH" ]; then
@@ -192,16 +190,3 @@ function peco-checkout-branch() {
 }
 zle -N peco-checkout-branch
 bindkey "^g^b" peco-checkout-branch
-
-function rvm-gemset-cd() {
-  local gemset=$(rvm list gemsets|rvm_gemset_list|peco --prompt ‘gemset>‘|awk ‘{print $1}‘)
-  if [ "$LBUFFER" -eq "" ]; then
-    local gem=$(/usr/local/bin/gls --color=none ~/.rvm/gems/$gemset/gems|peco)
-    if [ "$LBUFFER" -eq "" ]; then
-      BUFFER="cd ~/.rvm/gems/$gemset/gems/$gem"
-    fi
-  fi
-  zle clear-screen
-}
-zle -N rvm-gemset-cd
-bindkey "^g^s" rvm-gemset-cd
