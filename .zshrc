@@ -60,9 +60,7 @@ ZSH_THEME="dracula"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  brew git docker rbenv ruby gem rails
-)
+plugins=(brew git)
 
 source $ZSH/oh-my-zsh.sh
 
