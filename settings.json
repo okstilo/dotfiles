@@ -1,0 +1,19 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.suggestSelection": "first",
+    "editor.minimap.enabled": false,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "Dracula Soft",
+    "ruby.useLanguageServer": true,
+    "[ruby]": {
+        // "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+        "editor.rulers": [80],
+    },
+    "ruby.lint": {
+        "rubocop": true
+    },
+    // "ruby.format": "rubocop",
+    "ruby.intellisense": "rubyLocate",   
+}
