@@ -33,6 +33,10 @@ Temporary Items
 # rvm
 .ruby-gemset
 
+# rbenv & binstubs
+vendor/bundle/
+vendor/bin/
+
 # vscode
 .vscode/*
 !.vscode/settings.json
