@@ -15,5 +15,8 @@
         "rubocop": true
     },
     // "ruby.format": "rubocop",
-    "ruby.intellisense": "rubyLocate",   
+    "ruby.intellisense": "rubyLocate",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    
 }
