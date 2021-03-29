@@ -18,5 +18,6 @@
     "ruby.intellisense": "rubyLocate",
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    "files.autoSave": "afterDelay",
     
 }
