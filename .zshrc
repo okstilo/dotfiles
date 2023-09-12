@@ -4,7 +4,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 ZSH_DISABLE_COMPFIX=true
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/m-kitagawa/.oh-my-zsh
+export ZSH=/Users/msk/.config/oh-my-zsh/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -66,6 +66,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+## history
+
+export HISTFILE=$ZDOTDIR/.zsh_history
 # ヒストリに保存するコマンド
 export HISTSIZE=100000
 # ヒストリに保存するコマンドの最大数
@@ -78,11 +81,19 @@ export HISTIGNORE=pwd:ls:la:ll:lla:exit:open
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
+setopt hist_expire_dups_first # 履歴を切り詰める際に、重複する最も古いイベントから消す
+setopt hist_save_no_dups      # 履歴ファイルに書き出す際、新しいコマンドと重複する古いコマンドは切り捨てる
 setopt HIST_IGNORE_DUPS # 前と重複する行は記録しない
 setopt HIST_IGNORE_ALL_DUPS # 履歴中の重複行をファイル記録前に無くす
 setopt HIST_IGNORE_SPACE # 行頭がスペースのコマンドは記録しない
 setopt HIST_NO_STORE # histroyコマンドは記録しない
 setopt nonomatch
+
+# fzf
+
+[ -f ~/.config/fzf/.fzf.zsh ] && source ~/.config/fzf/.fzf.zsh
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
+
 
 # cargo
 
@@ -90,29 +101,29 @@ export PATH=$HOME/.cargo/bin:$PATH
 
 # node
 
-export PATH="$HOME/.nodenv/bin:$PATH"
-eval "$(nodenv init -)"
-export PATH="node_modules/.bin:$PATH"
+# export PATH="$HOME/.nodenv/bin:$PATH"
+# eval "$(nodenv init -)"
+# export PATH="node_modules/.bin:$PATH"
 
 # rbenv
 
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
+# export PATH=$HOME/.rbenv/bin:$PATH
+# eval "$(rbenv init -)"
 
 # java
 
-export JAVA_HOME=`/usr/libexec/java_home -v 8`
+# export JAVA_HOME=`/usr/libexec/java_home -v 8`
 
 # Android Studio
 
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+# export ANDROID_HOME=$HOME/Library/Android/sdk
+# export PATH=$PATH:$ANDROID_HOME/tools
+# export PATH=$PATH:$ANDROID_HOME/tools/bin
+# export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # vs code
 
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+# export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -138,62 +149,3 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-function peco-select-history() {
-    local tac
-    if which tac > /dev/null; then
-        tac="tac"
-    else
-        tac="tail -r"
-    fi
-    BUFFER=$(\history -n 1 | \
-        eval $tac | \
-        peco --query "$LBUFFER")
-    CURSOR=$#BUFFER
-    zle clear-screen
-}
-zle -N peco-select-history
-bindkey "^r" peco-select-history
-
-function peco-select-path() {
-  local filepath="$(find . | grep -v ‘/\.’ | peco --prompt ‘PATH>‘)"
-  if [ "$LBUFFER" -eq "" ]; then
-    if [ -d "$filepath" ]; then
-      BUFFER="cd $filepath"
-    elif [ -f "$filepath" ]; then
-      BUFFER="$EDITOR $filepath"
-    fi
-  else
-    BUFFER="$LBUFFER$filepath"
-  fi
-  CURSOR=$#BUFFER
-  zle clear-screen
-}
-
-zle -N peco-select-path
-bindkey "^f" peco-select-path # Ctrl+f で起動
-
-function peco-select-gitadd() {
-    local SELECTED_FILE_TO_ADD="$(git status --porcelain | \
-                                  peco --query "$LBUFFER" | \
-                                  awk -F ' ' ‘{print $NF}‘)"
-    if [ -n "$SELECTED_FILE_TO_ADD" ]; then
-      BUFFER="git add $(echo "$SELECTED_FILE_TO_ADD" | tr ‘\n’ ‘ ’)"
-      CURSOR=$#BUFFER
-    fi
-    zle accept-line
-    # zle clear-screens
-}
-
-zle -N peco-select-gitadd
-bindkey "^g^a" peco-select-gitadd
-
-function peco-checkout-branch() {
-    local BRANCH="$(git branch -a|ruby -e ‘bs=readlines.map(&:strip);lb=bs.select{|b|!(/^remotes\/origin/ =~ b)};rb=bs.select{|b|/^remotes\/origin/ =~ b}.select{|b|!b.include?("->") && !lb.include?(b.gsub("remotes/origin/",""))};puts lb.select{|b|!(/^\*/ =~ b)} + rb’|peco --prompt ‘git checkout’)"
-    if [ -n "$BRANCH" ]; then
-	BUFFER="git checkout $(echo $BRANCH | sed ‘s/remotes\/origin\///g’)"
-    fi
-    zle clear-screen
-}
-zle -N peco-checkout-branch
-bindkey "^g^b" peco-checkout-branch
