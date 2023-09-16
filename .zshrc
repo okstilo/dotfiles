@@ -60,7 +60,7 @@ ZSH_THEME="dracula"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew git)
+plugins=(brew git exa-zsh)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,6 +94,13 @@ setopt nonomatch
 [ -f ~/.config/fzf/.fzf.zsh ] && source ~/.config/fzf/.fzf.zsh
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
 
+# zoxide
+
+eval "$(zoxide init zsh)"
+
+# github cli
+
+eval "$(gh completion -s zsh)"
 
 # cargo
 
@@ -149,3 +156,4 @@ export PATH=$HOME/.cargo/bin:$PATH
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source "$HOME/.rye/env"
