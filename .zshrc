@@ -11,6 +11,10 @@ export ZSH=/Users/msk/.config/oh-my-zsh/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="dracula"
 
+# bat
+
+export BAT_THEME="Dracula"
+
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
@@ -102,6 +106,12 @@ eval "$(zoxide init zsh)"
 
 eval "$(gh completion -s zsh)"
 
+# rbenv
+
+export RBENV_ROOT=$HOME/.config/rbenv/.rbenv
+export PATH=$RBENV_ROOT/bin:$PATH
+eval "$(rbenv init -)"
+
 # cargo
 
 export PATH=$HOME/.cargo/bin:$PATH
@@ -111,11 +121,6 @@ export PATH=$HOME/.cargo/bin:$PATH
 # export PATH="$HOME/.nodenv/bin:$PATH"
 # eval "$(nodenv init -)"
 # export PATH="node_modules/.bin:$PATH"
-
-# rbenv
-
-# export PATH=$HOME/.rbenv/bin:$PATH
-# eval "$(rbenv init -)"
 
 # java
 
