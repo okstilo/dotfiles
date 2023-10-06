@@ -116,6 +116,10 @@ eval "$(rbenv init -)"
 
 export PATH=$HOME/.cargo/bin:$PATH
 
+# rye
+
+source "$HOME/.rye/env"
+
 # node
 
 # export PATH="$HOME/.nodenv/bin:$PATH"
@@ -161,4 +165,4 @@ export PATH=$HOME/.cargo/bin:$PATH
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source "$HOME/.rye/env"
+
