@@ -120,15 +120,21 @@ source "$HOME/.rye/env"
 
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
+# node
+
+export NODENV_ROOT=$HOME/.config/nodenv/.nodenv
+eval "$(nodenv init -)"
+
+
+# mojo
+
+# export MOJO_PYTHON_LIBRARY=$HOME/.rye/shims/python
+# export MODULAR_HOME=$HOME/.config/modular/.modular
+# export PATH=$MODULAR_HOME/pkg/packages.modular.com_mojo/bin:$PATH
+
 # cargo
 
 # export PATH=$HOME/.cargo/bin:$PATH
-
-# node
-
-# export PATH="$HOME/.nodenv/bin:$PATH"
-# eval "$(nodenv init -)"
-# export PATH="node_modules/.bin:$PATH"
 
 # java
 
