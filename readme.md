@@ -2,4 +2,4 @@
 
 - This is my dotfile
 - macOS Only
-- installl and  maintenance with love
+- install and maintenance with love
