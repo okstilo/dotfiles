@@ -1,17 +1,18 @@
-# Created by https://www.gitignore.io/api/macos
+# macOS
+# https://github.com/github/gitignore/blob/main/Global/macOS.gitignore
 
-### macOS ###
-*.DS_Store
+## General
+.DS_Store
 .AppleDouble
 .LSOverride
 
-# Icon must end with two \r
+## Icon must end with two \r
 Icon
 
-# Thumbnails
+## Thumbnails
 ._*
 
-# Files that might appear in the root of a volume
+## Files that might appear in the root of a volume
 .DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100
@@ -20,7 +21,7 @@ Icon
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
 
-# Directories potentially created on remote AFP share
+## Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
 Network Trash Folder
@@ -28,25 +29,30 @@ Temporary Items
 .apdisk
 
 
-# End of https://www.gitignore.io/api/macos
+# Xcode
+# https://github.com/github/gitignore/blob/main/Global/Xcode.gitignore
 
-# rvm
-.ruby-gemset
+## User settings
+xcuserdata/
 
-# rbenv & binstubs
-.bundle/
-vendor/
-vendor/bundle/
-vendor/bin/
+## Xcode 8 and earlier
+*.xcscmblueprint
+*.xccheckout
 
-# vscode
+
+# VS Code
+# https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
+
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-*.code-workspace
+!.vscode/*.code-snippets
 
-# mitsumori
+## Local History for Visual Studio Code
+.history/
 
-.pivotal_api_key
+## Built Visual Studio Code Extensions
+*.vsix
+
