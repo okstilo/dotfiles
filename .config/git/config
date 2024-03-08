@@ -1,6 +1,7 @@
 [user]
 	name = KITAGAWA Masaki
-	email = m-kitagawa@mksc.jp
+	# email = m-kitagawa@mksc.jp
+  # email = kitagawa.stilo@gmail.com
 [alias]
 	co = checkout
 [core]
